@@ -1,6 +1,12 @@
 import { Router } from 'express'
 
-import { createAddress, deleteAddress, getAddress, getAllAdresses, updateAddress } from '../controllers/address.controller.js'
+import {
+    createAddress,
+    deleteAddress,
+    getAddress,
+    getAllAdresses,
+    updateAddress
+} from '../controllers/address.controller.js'
 
 const router = Router()
 
