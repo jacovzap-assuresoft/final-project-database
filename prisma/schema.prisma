@@ -178,17 +178,17 @@ model stock {
   address_id Int?
   store_id   Int?
   store      store?    @relation(fields: [store_id], references: [store_id], onDelete: NoAction, onUpdate: NoAction)
-  address    address?  @relation(fields: [store_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction, map: "stock_store_id_fkey1")
+  address    address?  @relation(fields: [address_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction, map: "stock_store_id_fkey1")
   vehicle    vehicle[]
 }
 
 model store {
   store_id   Int        @id @default(autoincrement())
   phone      String?    @db.VarChar(11)
-  address_id Int?
+  address_id Int?       @unique
   employee   employee[]
   stock      stock[]
-  address    address    @relation(fields: [store_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction)
+  address    address?    @relation(fields: [address_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model vehicle {
