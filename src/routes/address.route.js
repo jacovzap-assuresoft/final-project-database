@@ -4,6 +4,6 @@ import { getAllAdresses } from "../controllers/address.controller.js"
 
 const router = Router()
 
-router.get('/address', getAllAdresses)
+router.get('/', getAllAdresses)
 
 export default router
