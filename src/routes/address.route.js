@@ -1,6 +1,6 @@
-import { Router } from "express"
+import { Router } from 'express'
 
-import { getAllAdresses } from "../controllers/address.controller.js"
+import { getAllAdresses } from '../controllers/address.controller.js'
 
 const router = Router()
 

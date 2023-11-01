@@ -1,5 +1,4 @@
-import { getAllAdressesRepository } from "../repositories/address.repository.js"
-
+import { getAllAdressesRepository } from '../repositories/address.repository.js'
 
 export const getAllAdresses = async (req, res) => {
   try {
