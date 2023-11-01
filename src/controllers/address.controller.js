@@ -1,7 +1,6 @@
 import { getAllAdressesRepository } from '../repositories/address.repository.js'
 
-export const
-  getAllAdresses = async (req, res) => {
+export const getAllAdresses = async (req, res) => {
     try {
       const addresses = await getAllAdressesRepository()
       res.status(200).json(addresses)
