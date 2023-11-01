@@ -19,7 +19,7 @@ export const getAllStores = async (req, res) => {
 export const getSingleStore = async (req, res) => {
     try {
         const { id } = req.params
-        const store = await getSingleStoreRepository(id)
+        const store = await getSingleStoreRepository(Number(id))
         res.status(200).json(store)
     } catch (err) {
         console.log(err.message)
@@ -42,7 +42,7 @@ export const updateStore = async (req, res) => {
   try {
     const { id } = req.params
     const data = req.body
-    const store = await updateStoreRepository(id, data)
+    const store = await updateStoreRepository(Number(id), data)
     res.status(200).json(store)
   } catch (err) {
     console.log(err.message)
@@ -53,7 +53,7 @@ export const updateStore = async (req, res) => {
 export const deleteStore = async (req, res) => {
   try {
     const { id } = req.params
-    const store = await deleteStoreRepository(id)
+    const store = await deleteStoreRepository(Number(id))
     res.status(200).json(store)
   } catch (err) {
     console.log(err.message)

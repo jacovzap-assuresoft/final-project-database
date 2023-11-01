@@ -19,7 +19,7 @@ export const getAllStoresRepository = async () => {
 export const getSingleStoreRepository = async id => {
   return prisma.store.findUnique({
     where: {
-      store_id: Number(id)
+      store_id: id
     },
     select: {
       phone: true,
@@ -37,10 +37,7 @@ export const getSingleStoreRepository = async id => {
 
 export const createStoreRepository = async data => {
   return prisma.store.create({
-    data: {
-      phone: data.phone,
-      address_id: Number(data.address_id),
-    },
+    data: data,
     select: {
       phone: true,
       address: {
@@ -58,12 +55,9 @@ export const createStoreRepository = async data => {
 export const updateStoreRepository = async (id, data) => {
   return prisma.store.update({
     where: {
-      store_id: Number(id)
+      store_id: id
     },
-    data: {
-      phone: data.phone,
-      address_id: Number(data.address_id)
-    },
+    data: data,
     select: {
       phone: true,
       address: {
