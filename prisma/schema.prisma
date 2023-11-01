@@ -24,10 +24,10 @@ model catalogue {
   code                              String?   @db.VarChar(50)
   description                       String?   @db.VarChar(150)
   model_model_brand_codeTocatalogue model[]   @relation("model_brand_codeTocatalogue")
-  model_model_color_codeTocatalogue model[]   @relation("model_color_codeTocatalogue")
   reserve                           reserve[]
   salary                            salary[]
   sale                              sale[]
+  vehicle                           vehicle[]
 }
 
 model commission {
@@ -95,9 +95,7 @@ model model {
   model_date                            DateTime?  @db.Date
   description                           String?    @db.VarChar(150)
   price                                 Decimal?   @db.Decimal(12, 2)
-  color_code                            Int?
   catalogue_model_brand_codeTocatalogue catalogue? @relation("model_brand_codeTocatalogue", fields: [brand_code], references: [catalogue_id], onDelete: NoAction, onUpdate: NoAction)
-  catalogue_model_color_codeTocatalogue catalogue? @relation("model_color_codeTocatalogue", fields: [color_code], references: [catalogue_id], onDelete: NoAction, onUpdate: NoAction)
   vehicle                               vehicle[]
 }
 
@@ -188,18 +186,19 @@ model store {
   address_id Int?       @unique
   employee   employee[]
   stock      stock[]
-  address    address?    @relation(fields: [address_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction)
+  address    address?   @relation(fields: [address_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model vehicle {
-  vehicle_id      Int       @id @default(autoincrement())
+  vehicle_id      Int        @id @default(autoincrement())
   model_id        Int?
   stock_id        Int?
-  identify_number String?   @db.VarChar(10)
+  identify_number String?    @db.VarChar(10)
   chasis_number   Int
   color_code      Int?
   reserve         reserve[]
   sale            sale[]
-  model           model?    @relation(fields: [model_id], references: [model_id], onDelete: NoAction, onUpdate: NoAction)
-  stock           stock?    @relation(fields: [stock_id], references: [stock_id], onDelete: NoAction, onUpdate: NoAction)
+  catalogue       catalogue? @relation(fields: [color_code], references: [catalogue_id], onDelete: NoAction, onUpdate: NoAction, map: "vehicle_color_color_code_fkey")
+  model           model?     @relation(fields: [model_id], references: [model_id], onDelete: NoAction, onUpdate: NoAction)
+  stock           stock?     @relation(fields: [stock_id], references: [stock_id], onDelete: NoAction, onUpdate: NoAction)
 }
