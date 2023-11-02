@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { 
-  createCatalogue, 
-  deleteCatalogueById, 
-  getAllCatalogues, 
-  getCatalogueById, 
+import {
+  createCatalogue,
+  deleteCatalogueById,
+  getAllCatalogues,
+  getCatalogueById,
   updateCatalogue
 } from '../controllers/catalogue.controller.js'
 

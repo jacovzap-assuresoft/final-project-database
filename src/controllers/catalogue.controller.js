@@ -1,8 +1,8 @@
 import {
-  createCatalogueUseCase, 
-  deleteCatalogueByIdUseCase, 
+  createCatalogueUseCase,
+  deleteCatalogueByIdUseCase,
   getAllCataloguesQuery,
-  getCatalogueByIdQuery, 
+  getCatalogueByIdQuery,
   updateCatalogueUseCase
 } from '../repositories/catalogue.repository.js'
 
@@ -39,9 +39,9 @@ export const updateCatalogue = async (request, response) => {
   try {
     const { id } = request.params
     const data = request.body
-    data.catalogue_id = Number(id);
-    const catalogueCreated = await updateCatalogueUseCase({ data, id: Number(id) })
-    response.status(201).json(catalogueCreated)
+    data.catalogue_id = Number(id)
+    const catalogueUpdated = await updateCatalogueUseCase({ data, id: Number(id) })
+    response.status(201).json(catalogueUpdated)
   } catch (error) {
     response.status(500).json({ message: error.message })
   }
@@ -50,11 +50,9 @@ export const updateCatalogue = async (request, response) => {
 export const deleteCatalogueById = async (request, response) => {
   try {
     const { id } = request.params
-    console.log(id);
-    const catalogue = await deleteCatalogueByIdUseCase(Number(id))
-    response.status(200).json(catalogue)
+    const catalogueDeleted = await deleteCatalogueByIdUseCase(Number(id))
+    response.status(200).json(catalogueDeleted)
   } catch (error) {
     response.status(500).json({ message: error.message })
   }
 }
-
