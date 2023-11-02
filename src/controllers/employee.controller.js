@@ -28,7 +28,6 @@ export const getEmployeeById = async (request, response) => {
 export const createEmployee = async (request, response) => {
   try {
     const data = request.body
-    console.log(data);
     const employeeCreated = await createEmployeeUseCase(data)
     response.status(201).json(employeeCreated)
   } catch (error) {
@@ -41,8 +40,8 @@ export const updateEmployee = async (request, response) => {
     const { id } = request.params
     const data = request.body
     data.employee_id = Number(id)
-    const employeeCreated = await updateEmployeeUseCase({ data, id: Number(id) })
-    response.status(201).json(employeeCreated)
+    const employeeUpdated = await updateEmployeeUseCase({ data, id: Number(id) })
+    response.status(201).json(employeeUpdated)
   } catch (error) {
     response.status(500).json({ message: error.message })
   }
