@@ -56,6 +56,12 @@ export const deleteCatalogueByIdUseCase = async id => {
   return prisma.catalogue.delete({
     where: {
       catalogue_id: id
+    },
+    select: {
+      catalogue_id: true,
+      type: true,
+      code: true,
+      description: true
     }
   })
 }
