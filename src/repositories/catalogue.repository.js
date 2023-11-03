@@ -7,13 +7,13 @@ const catalogueBody = {
   description: true
 }
 
-export const getAllCataloguesQuery = async () => {
+export const getAllCatalogsRepository = async () => {
   return prisma.catalogue.findMany({
     select: catalogueBody
   })
 }
 
-export const getCatalogueByIdQuery = async id => {
+export const getSingleCatalogueRepository = async id => {
   return prisma.catalogue.findUnique({
     where: {
       catalogue_id: id
@@ -22,14 +22,14 @@ export const getCatalogueByIdQuery = async id => {
   })
 }
 
-export const createCatalogueUseCase = async data => {
+export const createCatalogueRepository = async data => {
   return prisma.catalogue.create({
     data,
     select: catalogueBody
   })
 }
 
-export const updateCatalogueUseCase = async ({ data, id }) => {
+export const updateCatalogueRepository = async ({ data, id }) => {
   return prisma.catalogue.update({
     where: {
       catalogue_id: id
@@ -39,7 +39,7 @@ export const updateCatalogueUseCase = async ({ data, id }) => {
   })
 }
 
-export const deleteCatalogueByIdUseCase = async id => {
+export const deleteCatalogueRepository = async id => {
   return prisma.catalogue.delete({
     where: {
       catalogue_id: id
