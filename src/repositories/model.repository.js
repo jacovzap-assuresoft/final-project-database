@@ -1,15 +1,16 @@
 import prisma from '../config/db.config.js'
 
+const MODEL_SELECT = {
+  name: true,
+  brand_code: true,
+  model_date: true,
+  description: true,
+  price: true
+}
+
 export const getAllModelsRepository = async () => {
   return prisma.model.findMany({
-    select: {
-      model_id: true,
-      name: true,
-      brand_code: true,
-      model_date: true,
-      description: true,
-      price: true
-    }
+    select: MODEL_SELECT
   })
 }
 
@@ -18,28 +19,14 @@ export const getSingleModelRepository = async id => {
     where: {
       model_id: id
     },
-    select: {
-      model_id: true,
-      name: true,
-      brand_code: true,
-      model_date: true,
-      description: true,
-      price: true
-    }
+    select: MODEL_SELECT
   })
 }
 
 export const createModelRepository = async data => {
   return prisma.model.create({
     data,
-    select: {
-      model_id: true,
-      name: true,
-      brand_code: true,
-      model_date: true,
-      description: true,
-      price: true
-    }
+    select: MODEL_SELECT
   })
 }
 
@@ -49,14 +36,7 @@ export const updateModelRepository = async (id, data) => {
       model_id: id
     },
     data,
-    select: {
-      model_id: true,
-      name: true,
-      brand_code: true,
-      model_date: true,
-      description: true,
-      price: true
-    }
+    select: MODEL_SELECT
   })
 }
 
@@ -65,13 +45,6 @@ export const deleteModelRepository = async id => {
     where: {
       model_id: Number(id)
     },
-    select: {
-      model_id: true,
-      name: true,
-      brand_code: true,
-      model_date: true,
-      description: true,
-      price: true
-    }
+    select: MODEL_SELECT
   })
 }

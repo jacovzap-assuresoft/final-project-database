@@ -1,14 +1,16 @@
 import prisma from '../config/db.config.js'
 
+const RESERVE_SELECT = {
+  currency_code: true,
+  cost: true,
+  customer_id: true,
+  vehicle_id: true,
+  payment_id: true
+}
+
 export const getAllReservesRepository = async () => {
   return prisma.reserve.findMany({
-    select: {
-      currency_code: true,
-      cost: true,
-      customer_id: true,
-      vehicle_id: true,
-      payment_id: true
-    }
+    select: RESERVE_SELECT
   })
 }
 
@@ -17,26 +19,14 @@ export const getSingleReserveRepository = async id => {
     where: {
       reserve_id: id
     },
-    select: {
-      currency_code: true,
-      cost: true,
-      customer_id: true,
-      vehicle_id: true,
-      payment_id: true
-    }
+    select: RESERVE_SELECT
   })
 }
 
 export const createReserveRepository = async data => {
   return prisma.reserve.create({
     data,
-    select: {
-      currency_code: true,
-      cost: true,
-      customer_id: true,
-      vehicle_id: true,
-      payment_id: true
-    }
+    select: RESERVE_SELECT
   })
 }
 
@@ -46,13 +36,7 @@ export const updateReserveRepository = async (id, data) => {
       reserve_id: id
     },
     data,
-    select: {
-      currency_code: true,
-      cost: true,
-      customer_id: true,
-      vehicle_id: true,
-      payment_id: true
-    }
+    select: RESERVE_SELECT
   })
 }
 
@@ -61,12 +45,6 @@ export const deleteReserveRepository = async id => {
     where: {
       reserve_id: Number(id)
     },
-    select: {
-      currency_code: true,
-      cost: true,
-      customer_id: true,
-      vehicle_id: true,
-      payment_id: true
-    }
+    select: RESERVE_SELECT
   })
 }
