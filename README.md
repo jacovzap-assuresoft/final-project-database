@@ -1,5 +1,11 @@
 ### DATABASE FUNDAMENTALS FINAL PROJECT
 
+# CREATE DATABASE IN DOCKER
+Run the following command
+```
+docker run --name proy_db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+```
+
 # APPLYING MIGRATIONS
 In order to apply new migrations run this command:
 ```

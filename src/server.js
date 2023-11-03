@@ -7,9 +7,12 @@ import storeRouter from './routes/store.route.js'
 import modelsRouter from './routes/models.route.js'
 import vehiclesRouter from './routes/vehicle.route.js'
 import reservesRouter from './routes/reserve.route.js'
+import customerContactRouter from './routes/customerContact.route.js'
+import physicalCustomerRouter from './routes/physicalCustomer.route.js'
+import commissionRouter from './routes/commission.route.js'
 import paymentRouter from './routes/payment.route.js'
 import saleRouter from './routes/sale.route.js'
-import paymentRouter from './routes/payment.route.js'
+import payment_detailRouter from './routes/payment_detail.route.js'
 import stockRouter from './routes/stock.route.js'
 
 const app = express()
@@ -23,8 +26,12 @@ app.use('/store', storeRouter)
 app.use('/model', modelsRouter)
 app.use('/vehicle', vehiclesRouter)
 app.use('/reserve', reservesRouter)
+app.use('/customer-contact', customerContactRouter)
+app.use('/physical-customer', physicalCustomerRouter)
+app.use('/commission', commissionRouter)
 app.use('/stock', stockRouter)
 app.use('/sale', saleRouter)
 app.use('/payment', paymentRouter)
+app.use('/payment_detail', payment_detailRouter)
 
 export default app
