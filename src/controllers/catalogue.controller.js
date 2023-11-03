@@ -40,7 +40,7 @@ export const updateCatalogue = async (req, res) => {
     const { id } = req.params
     const data = req.body
     data.catalogue_id = Number(id)
-    const catalogueUpdated = await updateCatalogueRepository({ data, id: Number(id) })
+    const catalogueUpdated = await updateCatalogueRepository(data, Number(id))
     res.status(201).json(catalogueUpdated)
   } catch (error) {
     res.status(500).json({ message: error.message })

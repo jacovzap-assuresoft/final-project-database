@@ -29,7 +29,7 @@ export const createCatalogueRepository = async data => {
   })
 }
 
-export const updateCatalogueRepository = async ({ data, id }) => {
+export const updateCatalogueRepository = async (data, id) => {
   return prisma.catalogue.update({
     where: {
       catalogue_id: id
