@@ -9,13 +9,13 @@ const employeeBody = {
   store_id: true
 }
 
-export const getAllEmployeesQuery = async () => {
+export const getAllEmployeesRepository = async () => {
   return prisma.employee.findMany({
     select: employeeBody
   })
 }
 
-export const getEmployeeByIdQuery = async id => {
+export const getSingleEmployeeRepository = async id => {
   return prisma.employee.findUnique({
     where: {
       employee_id: id
@@ -24,14 +24,14 @@ export const getEmployeeByIdQuery = async id => {
   })
 }
 
-export const createEmployeeUseCase = async data => {
+export const createEmployeeRepository = async data => {
   return prisma.employee.create({
     data,
     select: employeeBody
   })
 }
 
-export const updateEmployeeUseCase = async ({ data, id }) => {
+export const updateEmployeeRepository = async ({ data, id }) => {
   return prisma.employee.update({
     where: {
       employee_id: id
@@ -41,7 +41,7 @@ export const updateEmployeeUseCase = async ({ data, id }) => {
   })
 }
 
-export const deleteEmployeeByIdUseCase = async id => {
+export const deleteEmployeeRepository = async id => {
   return prisma.employee.delete({
     where: {
       employee_id: id

@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import {
   createEmployee,
-  deleteEmployeeById,
+  deleteEmployee,
   getAllEmployees,
   getEmployeeById,
   updateEmployee
@@ -11,8 +11,8 @@ const employeeRouter = Router()
 
 employeeRouter.get('/', getAllEmployees)
 employeeRouter.get('/:id', getEmployeeById)
-employeeRouter.post('/', createEmployee)
-employeeRouter.put('/:id', updateEmployee)
-employeeRouter.delete('/:id', deleteEmployeeById)
+employeeRouter.post('/create-employee', createEmployee)
+employeeRouter.put('/update-employee/:id', updateEmployee)
+employeeRouter.delete('/delete-employee/:id', deleteEmployee)
 
 export default employeeRouter
