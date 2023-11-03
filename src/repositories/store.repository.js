@@ -6,10 +6,10 @@ export const getAllStoresRepository = async () => {
       phone: true,
       address: {
         select: {
-            address_id: true,
-            address_dir: true,
-            location: true,
-            number: true
+          address_id: true,
+          address_dir: true,
+          location: true,
+          number: true
         }
       }
     }
@@ -24,12 +24,12 @@ export const getSingleStoreRepository = async id => {
     select: {
       phone: true,
       address: {
-          select: {
-            address_id: true,
-            address_dir: true,
-            location: true,
-            number: true
-          }
+        select: {
+          address_id: true,
+          address_dir: true,
+          location: true,
+          number: true
+        }
       }
     }
   })
@@ -37,15 +37,15 @@ export const getSingleStoreRepository = async id => {
 
 export const createStoreRepository = async data => {
   return prisma.store.create({
-    data: data,
+    data,
     select: {
       phone: true,
       address: {
         select: {
-            address_id: true,
-            address_dir: true,
-            location: true,
-            number: true
+          address_id: true,
+          address_dir: true,
+          location: true,
+          number: true
         }
       }
     }
@@ -57,15 +57,15 @@ export const updateStoreRepository = async (id, data) => {
     where: {
       store_id: id
     },
-    data: data,
+    data,
     select: {
       phone: true,
       address: {
         select: {
-            address_id: true,
-            address_dir: true,
-            location: true,
-            number: true
+          address_id: true,
+          address_dir: true,
+          location: true,
+          number: true
         }
       }
     }
@@ -81,10 +81,10 @@ export const deleteStoreRepository = async id => {
       phone: true,
       address: {
         select: {
-            address_id: true,
-            address_dir: true,
-            location: true,
-            number: true
+          address_id: true,
+          address_dir: true,
+          location: true,
+          number: true
         }
       }
     }
