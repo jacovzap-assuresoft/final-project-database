@@ -4,6 +4,7 @@ import morgan from 'morgan'
 
 import addressRouter from './routes/address.route.js'
 import storeRouter from './routes/store.route.js'
+import catalogueRouter from './routes/catalogue.route.js'
 import juridicalCustomerRouter from './routes/juridicalCustomer.route.js'
 import modelsRouter from './routes/models.route.js'
 import vehiclesRouter from './routes/vehicle.route.js'
@@ -24,6 +25,7 @@ app.use(express.json())
 
 app.use('/address', addressRouter)
 app.use('/store', storeRouter)
+app.use('/catalogue', catalogueRouter)
 app.use('/juridical-customer', juridicalCustomerRouter)
 app.use('/model', modelsRouter)
 app.use('/vehicle', vehiclesRouter)
