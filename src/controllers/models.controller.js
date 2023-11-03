@@ -8,8 +8,8 @@ import {
 
 export const getAllModels = async (req, res) => {
   try {
-    const model = await getAllModelsRepository()
-    res.status(200).json(model)
+    const models = await getAllModelsRepository()
+    res.status(200).json(models)
   } catch (err) {
     console.log(err.message)
     res.status(500).json({ message: err.message })
@@ -53,8 +53,8 @@ export const updateModel = async (req, res) => {
 export const deleteModel = async (req, res) => {
   try {
     const { id } = req.params
-    const store = await deleteModelRepository(Number(id))
-    res.status(200).json(store)
+    const model = await deleteModelRepository(Number(id))
+    res.status(200).json(model)
   } catch (err) {
     console.log(err.message)
     res.status(500).json({ message: err.message })
