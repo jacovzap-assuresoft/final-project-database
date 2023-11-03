@@ -1,18 +1,20 @@
 import prisma from '../config/db.config.js'
 
+const STORE_SELECT = {
+  phone: true,
+  address: {
+    select: {
+      address_id: true,
+      address_dir: true,
+      location: true,
+      number: true
+    }
+  }
+}
+
 export const getAllStoresRepository = async () => {
   return prisma.store.findMany({
-    select: {
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      }
-    }
+    select: STORE_SELECT
   })
 }
 
@@ -21,34 +23,14 @@ export const getSingleStoreRepository = async id => {
     where: {
       store_id: id
     },
-    select: {
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      }
-    }
+    select: STORE_SELECT
   })
 }
 
 export const createStoreRepository = async data => {
   return prisma.store.create({
     data,
-    select: {
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      }
-    }
+    select: STORE_SELECT
   })
 }
 
@@ -58,17 +40,7 @@ export const updateStoreRepository = async (id, data) => {
       store_id: id
     },
     data,
-    select: {
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      }
-    }
+    select: STORE_SELECT
   })
 }
 
@@ -77,16 +49,6 @@ export const deleteStoreRepository = async id => {
     where: {
       store_id: id
     },
-    select: {
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      }
-    }
+    select: STORE_SELECT
   })
 }

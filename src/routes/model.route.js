@@ -6,7 +6,7 @@ import {
   createModel,
   updateModel,
   deleteModel
-} from '../controllers/models.controller.js'
+} from '../controllers/model.controller.js'
 
 const router = Router()
 
