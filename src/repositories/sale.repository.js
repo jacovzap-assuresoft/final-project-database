@@ -1,16 +1,40 @@
 import prisma from "../config/db.config.js"
 
+const SALE_SELECT = {
+    sale_id: true,
+    state_code: true,
+    payment_id: true,
+    customer_id: true,
+    employee_id: true,
+    vehicle_id: true
+}
+
+const ADDRESS_SELECT = {
+    address_id: true,
+    address_dir: true,
+    location: true,
+    number: true
+}
+
+const CATALOGUE_SELECT = {
+    catalogue_id: true,
+    type: true,
+    code: true,
+    description: true
+}
+
+const STORE_SELECT = {
+    store_id: true,
+    phone: true,
+    address: {
+        select: ADDRESS_SELECT
+    }
+}
+
 export const createSaleRepository = async (sale) => {
     return prisma.sale.create({
         data: sale,
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -20,14 +44,7 @@ export const updateSaleRepository = async (id, sale) => {
             sale_id: Number(id)
         },
         data: sale,
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -38,14 +55,7 @@ export const upsertSaleRepository = async (id, sale) => {
         },
         update: sale,
         create: sale,
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -54,28 +64,14 @@ export const deleteSaleRepository = async (id) => {
         where: {
             sale_id: Number(id)
         },
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 
 }
 
 export const getAllSalesRepository = async () => {
     return prisma.sale.findMany({
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -84,14 +80,7 @@ export const getSaleByIdRepository = async (id) => {
         where: {
             sale_id: Number(id)
         },
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -100,14 +89,7 @@ export const getSalesByEmployee = async (employee_id) => {
         where:{
             employee_id: employee_id
         },
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -124,12 +106,7 @@ export const getAllSalesDetailsRepository = async () => {
                 select: {
                     customer_id: true,
                     address: {
-                        select: {
-                            address_id: true,
-                            address_dir: true,
-                            location: true,
-                            number: true
-                        }
+                        select: ADDRESS_SELECT
                     }
                 }
             },
@@ -140,36 +117,15 @@ export const getAllSalesDetailsRepository = async () => {
                     last_name: true,
                     birth_date: true,
                     address: {
-                        select: {
-                            address_id: true,
-                            address_dir: true,
-                            location: true,
-                            number: true
-                        }
+                        select: ADDRESS_SELECT
                     },
                     store: {
-                        select: {
-                            store_id: true,
-                            phone: true,
-                            address: {
-                                select: {
-                                    address_id: true,
-                                    address_dir: true,
-                                    location: true,
-                                    number: true
-                                }
-                            }
-                        }
+                        select: STORE_SELECT
                     }
                 }
             },
             catalogue: {
-                select: {
-                    catalogue_id: true,
-                    type: true,
-                    code: true,
-                    description: true
-                }
+                select: CATALOGUE_SELECT
             },
             vehicle: {
                 select: {
@@ -180,12 +136,7 @@ export const getAllSalesDetailsRepository = async () => {
                     stock_id: true,
                     color_code: true,
                     catalogue: {
-                        select: {
-                            catalogue_id: true,
-                            type: true,
-                            code: true,
-                            description: true
-                        }
+                        select: CATALOGUE_SELECT
                     },
                     model: {
                         select: {
@@ -196,12 +147,7 @@ export const getAllSalesDetailsRepository = async () => {
                             description: true,
                             price: true,
                             catalogue_model_brand_codeTocatalogue: {
-                                select: {
-                                    catalogue_id: true,
-                                    type: true,
-                                    code: true,
-                                    description: true
-                                }
+                                select: CATALOGUE_SELECT
                             }
                         }
                     },
@@ -213,26 +159,10 @@ export const getAllSalesDetailsRepository = async () => {
                             address_id: true,
                             store_id: true,
                             address: {
-                                select: {
-                                    address_id: true,
-                                    address_dir: true,
-                                    location: true,
-                                    number: true
-                                }
+                                select: ADDRESS_SELECT
                             },
                             store: {
-                                select: {
-                                    store_id: true,
-                                    phone: true,
-                                    address: {
-                                        select: {
-                                            address_id: true,
-                                            address_dir: true,
-                                            location: true,
-                                            number: true
-                                        }
-                                    }
-                                }
+                                select: STORE_SELECT
                             }
                         }
                     }
