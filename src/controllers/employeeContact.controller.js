@@ -1,58 +1,58 @@
 import {
-  createEmployeeContactUseCase,
-  deleteEmployeeContactByIdUseCase,
-  getAllEmployeeContactsQuery,
-  getEmployeeContactByIdQuery,
-  updateEmployeeContactUseCase
+  createEmployeeContactRepository,
+  deleteEmployeeContactRepository,
+  getAllEmployeeContactsRepository,
+  getSingleEmployeeContactRepository,
+  updateEmployeeContactRepository
 } from '../repositories/employeeContact.repository.js'
 
-export const getAllEmployeeContacts = async (request, response) => {
+export const getAllEmployeeContacts = async (req, res) => {
   try {
-    const employeeContacts = await getAllEmployeeContactsQuery()
-    response.status(200).json(employeeContacts)
+    const employeeContacts = await getAllEmployeeContactsRepository()
+    res.status(200).json(employeeContacts)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const getEmployeeContactById = async (request, response) => {
+export const getSingleEmployeeContact = async (req, res) => {
   try {
-    const { id } = request.params
-    const employeeContact = await getEmployeeContactByIdQuery(Number(id))
-    response.status(200).json(employeeContact)
+    const { id } = req.params
+    const employeeContact = await getSingleEmployeeContactRepository(Number(id))
+    res.status(200).json(employeeContact)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const createEmployeeContact = async (request, response) => {
+export const createEmployeeContact = async (req, res) => {
   try {
-    const data = request.body
-    const employeeContactCreated = await createEmployeeContactUseCase(data)
-    response.status(201).json(employeeContactCreated)
+    const data = req.body
+    const employeeContactCreated = await createEmployeeContactRepository(data)
+    res.status(201).json(employeeContactCreated)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const updateEmployeeContact = async (request, response) => {
+export const updateEmployeeContact = async (req, res) => {
   try {
-    const { id } = request.params
-    const data = request.body
+    const { id } = req.params
+    const data = req.body
     data.contact_id = Number(id)
-    const employeeContactUpdated = await updateEmployeeContactUseCase({ data, id: Number(id) })
-    response.status(201).json(employeeContactUpdated)
+    const employeeContactUpdated = await updateEmployeeContactRepository(data, Number(id))
+    res.status(201).json(employeeContactUpdated)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const deleteEmployeeContactById = async (request, response) => {
+export const deleteEmployeeContact = async (req, res) => {
   try {
-    const { id } = request.params
-    const employeeContactDeleted = await deleteEmployeeContactByIdUseCase(Number(id))
-    response.status(200).json(employeeContactDeleted)
+    const { id } = req.params
+    const employeeContactDeleted = await deleteEmployeeContactRepository(Number(id))
+    res.status(200).json(employeeContactDeleted)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }

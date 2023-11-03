@@ -7,13 +7,13 @@ const employeeContactBody = {
   contact_value: true
 }
 
-export const getAllEmployeeContactsQuery = async () => {
+export const getAllEmployeeContactsRepository = async () => {
   return prisma.employee_contact.findMany({
     select: employeeContactBody
   })
 }
 
-export const getEmployeeContactByIdQuery = async id => {
+export const getSingleEmployeeContactRepository = async id => {
   return prisma.employee_contact.findUnique({
     where: {
       contact_id: id
@@ -22,14 +22,14 @@ export const getEmployeeContactByIdQuery = async id => {
   })
 }
 
-export const createEmployeeContactUseCase = async data => {
+export const createEmployeeContactRepository = async data => {
   return prisma.employee_contact.create({
     data,
     select: employeeContactBody
   })
 }
 
-export const updateEmployeeContactUseCase = async ({ data, id }) => {
+export const updateEmployeeContactRepository = async (data, id) => {
   return prisma.employee_contact.update({
     where: {
       contact_id: id
@@ -39,7 +39,7 @@ export const updateEmployeeContactUseCase = async ({ data, id }) => {
   })
 }
 
-export const deleteEmployeeContactByIdUseCase = async id => {
+export const deleteEmployeeContactRepository = async id => {
   return prisma.employee_contact.delete({
     where: {
       contact_id: id
