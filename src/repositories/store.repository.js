@@ -75,7 +75,7 @@ export const updateStoreRepository = async (id, data) => {
 export const deleteStoreRepository = async id => {
   return prisma.store.delete({
     where: {
-      store_id: Number(id)
+      store_id: id
     },
     select: {
       phone: true,
