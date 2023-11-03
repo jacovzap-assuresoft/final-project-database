@@ -8,8 +8,8 @@ import {
 
 export const getAllModels = async (req, res) => {
   try {
-    const addresses = await getAllModelsRepository()
-    res.status(200).json(addresses)
+    const model = await getAllModelsRepository()
+    res.status(200).json(model)
   } catch (err) {
     console.log(err.message)
     res.status(500).json({ message: err.message })
