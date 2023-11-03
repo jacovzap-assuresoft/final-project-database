@@ -11,8 +11,8 @@ const employeeContactRouter = Router()
 
 employeeContactRouter.get('/', getAllEmployeeContacts)
 employeeContactRouter.get('/:id', getSingleEmployeeContact)
-employeeContactRouter.post('/', createEmployeeContact)
-employeeContactRouter.put('/:id', updateEmployeeContact)
-employeeContactRouter.delete('/:id', deleteEmployeeContact)
+employeeContactRouter.post('/create-employee-contact', createEmployeeContact)
+employeeContactRouter.put('/update-employee-contact/:id', updateEmployeeContact)
+employeeContactRouter.delete('/delete-employee-contact/:id', deleteEmployeeContact)
 
 export default employeeContactRouter
