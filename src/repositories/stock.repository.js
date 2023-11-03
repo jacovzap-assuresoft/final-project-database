@@ -1,9 +1,19 @@
 import prisma from '../config/db.config.js'
 
-export const getAllStockRepository = async () => {
-  return prisma.stock.findMany({
+const STOCK_SELECT = {
+  name: true,
+  phone: true,
+  address: {
     select: {
-      name: true,
+      address_id: true,
+      address_dir: true,
+      location: true,
+      number: true
+    }
+  },
+  store: {
+    select: {
+      store_id: true,
       phone: true,
       address: {
         select: {
@@ -12,22 +22,14 @@ export const getAllStockRepository = async () => {
           location: true,
           number: true
         }
-      },
-      store: {
-        select: {
-          store_id: true,
-          phone: true,
-          address: {
-            select: {
-              address_id: true,
-              address_dir: true,
-              location: true,
-              number: true
-            }
-          }
-        }
       }
     }
+  }
+}
+
+export const getAllStockRepository = async () => {
+  return prisma.stock.findMany({
+    select: STOCK_SELECT
   })
 }
 
@@ -36,64 +38,14 @@ export const getSingleStockRepository = async id => {
     where: {
       stock_id: id
     },
-    select: {
-      name: true,
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      },
-      store: {
-        select: {
-          store_id: true,
-          phone: true,
-          address: {
-            select: {
-              address_id: true,
-              address_dir: true,
-              location: true,
-              number: true
-            }
-          }
-        }
-      }
-    }
+    select: STOCK_SELECT
   })
 }
 
 export const createStockRepository = async data => {
   return prisma.stock.create({
     data,
-    select: {
-      name: true,
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      },
-      store: {
-        select: {
-          store_id: true,
-          phone: true,
-          address: {
-            select: {
-              address_id: true,
-              address_dir: true,
-              location: true,
-              number: true
-            }
-          }
-        }
-      }
-    }
+    select: STOCK_SELECT
   })
 }
 
@@ -103,32 +55,7 @@ export const updateStockRepository = async (id, data) => {
       stock_id: id
     },
     data,
-    select: {
-      name: true,
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      },
-      store: {
-        select: {
-          store_id: true,
-          phone: true,
-          address: {
-            select: {
-              address_id: true,
-              address_dir: true,
-              location: true,
-              number: true
-            }
-          }
-        }
-      }
-    }
+    select: STOCK_SELECT
   })
 }
 
@@ -137,31 +64,6 @@ export const deleteStoreRepository = async id => {
     where: {
       stock_id: Number(id)
     },
-    select: {
-      name: true,
-      phone: true,
-      address: {
-        select: {
-          address_id: true,
-          address_dir: true,
-          location: true,
-          number: true
-        }
-      },
-      store: {
-        select: {
-          store_id: true,
-          phone: true,
-          address: {
-            select: {
-              address_id: true,
-              address_dir: true,
-              location: true,
-              number: true
-            }
-          }
-        }
-      }
-    }
+    select: STOCK_SELECT
   })
 }

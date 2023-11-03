@@ -1,16 +1,18 @@
 import prisma from "../config/db.config.js"
 
+const SALE_SELECT = {
+    sale_id: true,
+    state_code: true,
+    payment_id: true,
+    customer_id: true,
+    employee_id: true,
+    vehicle_id: true
+}
+
 export const createSaleRepository = async (sale) => {
     return prisma.sale.create({
         data: sale,
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -20,14 +22,7 @@ export const updateSaleRepository = async (id, sale) => {
             sale_id: Number(id)
         },
         data: sale,
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -38,14 +33,7 @@ export const upsertSaleRepository = async (id, sale) => {
         },
         update: sale,
         create: sale,
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -54,28 +42,14 @@ export const deleteSaleRepository = async (id) => {
         where: {
             sale_id: Number(id)
         },
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 
 }
 
 export const getAllSalesRepository = async () => {
     return prisma.sale.findMany({
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -84,14 +58,7 @@ export const getSaleByIdRepository = async (id) => {
         where: {
             sale_id: Number(id)
         },
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
@@ -100,14 +67,7 @@ export const getSalesByEmployee = async (employee_id) => {
         where:{
             employee_id: employee_id
         },
-        select: {
-            sale_id: true,
-            state_code: true,
-            payment_id: true,
-            customer_id: true,
-            employee_id: true,
-            vehicle_id: true
-        }
+        select: SALE_SELECT
     })
 }
 
