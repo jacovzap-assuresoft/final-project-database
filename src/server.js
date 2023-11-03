@@ -6,6 +6,7 @@ import addressRouter from './routes/address.route.js'
 import storeRouter from './routes/store.route.js'
 import saleRouter from './routes/sale.route.js'
 import paymentRouter from './routes/payment.route.js'
+import payment_detailRouter from './routes/payment_detail.route.js'
 
 const app = express()
 
@@ -17,5 +18,6 @@ app.use('/address', addressRouter)
 app.use('/store', storeRouter)
 app.use('/sale', saleRouter)
 app.use('/payment', paymentRouter)
+app.use('/payment_detail', payment_detailRouter)
 
 export default app

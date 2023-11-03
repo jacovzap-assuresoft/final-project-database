@@ -11,7 +11,6 @@ import {
 export const createPayment = async (req, res) => {
   try {
     const payment = await createPaymentRepository(req.body)
-    const paymentDetail = await createPaymentRepository(req.body)
     res.status(200).json(payment)
   } catch (err){
     res.status(500).json({
