@@ -6,53 +6,53 @@ import {
   updateCatalogueRepository
 } from '../repositories/catalogue.repository.js'
 
-export const getAllCatalogs = async (request, response) => {
+export const getAllCatalogs = async (req, res) => {
   try {
     const catalogues = await getAllCatalogsRepository()
-    response.status(200).json(catalogues)
+    res.status(200).json(catalogues)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const getSingleCatalogue = async (request, response) => {
+export const getSingleCatalogue = async (req, res) => {
   try {
-    const { id } = request.params
+    const { id } = req.params
     const catalogue = await getSingleCatalogueRepository(Number(id))
-    response.status(200).json(catalogue)
+    res.status(200).json(catalogue)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const createCatalogue = async (request, response) => {
+export const createCatalogue = async (req, res) => {
   try {
-    const data = request.body
+    const data = req.body
     const catalogueCreated = await createCatalogueRepository(data)
-    response.status(201).json(catalogueCreated)
+    res.status(201).json(catalogueCreated)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const updateCatalogue = async (request, response) => {
+export const updateCatalogue = async (req, res) => {
   try {
-    const { id } = request.params
-    const data = request.body
+    const { id } = req.params
+    const data = req.body
     data.catalogue_id = Number(id)
     const catalogueUpdated = await updateCatalogueRepository({ data, id: Number(id) })
-    response.status(201).json(catalogueUpdated)
+    res.status(201).json(catalogueUpdated)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
 
-export const deleteCatalogue = async (request, response) => {
+export const deleteCatalogue = async (req, res) => {
   try {
-    const { id } = request.params
+    const { id } = req.params
     const catalogueDeleted = await deleteCatalogueRepository(Number(id))
-    response.status(200).json(catalogueDeleted)
+    res.status(200).json(catalogueDeleted)
   } catch (error) {
-    response.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message })
   }
 }
