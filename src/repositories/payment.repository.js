@@ -1,27 +1,23 @@
 import prisma from "../config/db.config.js";
 
+const PAYMENT_SELECT = {
+  payment_id: true,
+  payment_date: true,
+  payment_detail_id: true,
+  employee_id: true,
+  sale_id: true
+}
+
 export const createPaymentRepository = async (payment) => {
   return prisma.payment.create({
     data: payment,
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
 export const getAllPaymentsRepository = async () => {
   return prisma.payment.findMany({
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
@@ -30,13 +26,7 @@ export const getPaymentByIdRepository = async (id) => {
     where: {
       payment_id: Number(id)
     },
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
@@ -46,13 +36,7 @@ export const updatePaymentRepository = async (id, payment) => {
       payment_id: Number(id)
     },
     data: payment,
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
@@ -63,13 +47,7 @@ export const upsertPaymentRepository = async (id, payment) => {
     },
     update: payment,
     create: payment,
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
@@ -78,13 +56,7 @@ export const deletePaymentRepository = async (id) => {
     where: {
       payment_id: Number(id)
     },
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
@@ -96,13 +68,7 @@ export const getPaymentsByRangeRepo = async (start, end) => {
         lte: new Date(end)
       }
     },
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 
@@ -111,13 +77,7 @@ export const getPaymentsByEmployeeRepo = async (id) => {
     where: {
       employee_id: Number(id)
     },
-    select: {
-      payment_id: true,
-      payment_date: true,
-      payment_detail_id: true,
-      employee_id: true,
-      sale_id: true,
-    }
+    select: PAYMENT_SELECT
   });
 }
 

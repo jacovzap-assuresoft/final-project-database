@@ -4,6 +4,7 @@ import morgan from 'morgan'
 
 import addressRouter from './routes/address.route.js'
 import storeRouter from './routes/store.route.js'
+import paymentRouter from './routes/payment.route.js'
 import saleRouter from './routes/sale.route.js'
 import paymentRouter from './routes/payment.route.js'
 import stockRouter from './routes/stock.route.js'
