@@ -1,13 +1,15 @@
 import prisma from '../config/db.config.js'
 
+const catalogueBody = {
+  catalogue_id: true,
+  type: true,
+  code: true,
+  description: true
+}
+
 export const getAllCataloguesQuery = async () => {
   return prisma.catalogue.findMany({
-    select: {
-      catalogue_id: true,
-      type: true,
-      code: true,
-      description: true
-    }
+    select: catalogueBody
   })
 }
 
@@ -16,24 +18,14 @@ export const getCatalogueByIdQuery = async id => {
     where: {
       catalogue_id: id
     },
-    select: {
-      catalogue_id: true,
-      type: true,
-      code: true,
-      description: true
-    }
+    select: catalogueBody
   })
 }
 
 export const createCatalogueUseCase = async data => {
   return prisma.catalogue.create({
     data,
-    select: {
-      catalogue_id: true,
-      type: true,
-      code: true,
-      description: true
-    }
+    select: catalogueBody
   })
 }
 
@@ -43,12 +35,7 @@ export const updateCatalogueUseCase = async ({ data, id }) => {
       catalogue_id: id
     },
     data,
-    select: {
-      catalogue_id: true,
-      type: true,
-      code: true,
-      description: true
-    }
+    select: catalogueBody
   })
 }
 
@@ -57,11 +44,6 @@ export const deleteCatalogueByIdUseCase = async id => {
     where: {
       catalogue_id: id
     },
-    select: {
-      catalogue_id: true,
-      type: true,
-      code: true,
-      description: true
-    }
+    select: catalogueBody
   })
 }

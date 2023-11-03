@@ -28,6 +28,7 @@ export const getEmployeeById = async (request, response) => {
 export const createEmployee = async (request, response) => {
   try {
     const data = request.body
+    data.birth_date = new Date(data.birth_date).toISOString()
     const employeeCreated = await createEmployeeUseCase(data)
     response.status(201).json(employeeCreated)
   } catch (error) {

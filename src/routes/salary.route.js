@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { 
+import {
   createSalary,
   deleteSalaryById,
-  getAllSalaries, 
-  getSalaryById, 
+  getAllSalaries,
+  getSalaryById,
   updateSalary
 } from '../controllers/salary.controller.js'
 

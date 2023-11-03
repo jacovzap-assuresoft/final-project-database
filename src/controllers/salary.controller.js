@@ -1,7 +1,7 @@
-import { 
+import {
   createSalaryUseCase,
   deleteSalaryByIdUseCase,
-  getAllSalariesQuery, 
+  getAllSalariesQuery,
   getSalaryByIdQuery,
   updateSalaryUseCase
 } from '../repositories/salary.repository.js'

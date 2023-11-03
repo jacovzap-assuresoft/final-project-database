@@ -1,16 +1,18 @@
 import prisma from '../config/db.config.js'
 
+const salaryBody = {
+  salary_id: true,
+  employee_id: true,
+  start_date: true,
+  end_date: true,
+  payment_date: true,
+  currency_code: true,
+  amount: true
+}
+
 export const getAllSalariesQuery = async () => {
   return prisma.salary.findMany({
-    select: {
-      salary_id: true,
-      employee_id: true,
-      start_date: true,
-      end_date: true,
-      payment_date: true,
-      currency_code: true,
-      amount: true
-    }
+    select: salaryBody
   })
 }
 
@@ -19,30 +21,14 @@ export const getSalaryByIdQuery = async id => {
     where: {
       salary_id: id
     },
-    select: {
-      salary_id: true,
-      employee_id: true,
-      start_date: true,
-      end_date: true,
-      payment_date: true,
-      currency_code: true,
-      amount: true
-    }
+    select: salaryBody
   })
 }
 
 export const createSalaryUseCase = async data => {
   return prisma.salary.create({
     data,
-    select: {
-      salary_id: true,
-      employee_id: true,
-      start_date: true,
-      end_date: true,
-      payment_date: true,
-      currency_code: true,
-      amount: true
-    }
+    select: salaryBody
   })
 }
 
@@ -52,15 +38,7 @@ export const updateSalaryUseCase = async ({ data, id }) => {
       salary_id: id
     },
     data,
-    select: {
-      salary_id: true,
-      employee_id: true,
-      start_date: true,
-      end_date: true,
-      payment_date: true,
-      currency_code: true,
-      amount: true
-    }
+    select: salaryBody
   })
 }
 
@@ -69,14 +47,6 @@ export const deleteSalaryByIdUseCase = async id => {
     where: {
       salary_id: id
     },
-    select: {
-      salary_id: true,
-      employee_id: true,
-      start_date: true,
-      end_date: true,
-      payment_date: true,
-      currency_code: true,
-      amount: true
-    }
+    select: salaryBody
   })
 }

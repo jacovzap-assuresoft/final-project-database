@@ -1,15 +1,17 @@
 import prisma from '../config/db.config.js'
 
+const employeeBody = {
+  employee_id: true,
+  first_name: true,
+  last_name: true,
+  birth_date: true,
+  address_id: true,
+  store_id: true
+}
+
 export const getAllEmployeesQuery = async () => {
   return prisma.employee.findMany({
-    select: {
-      employee_id: true,
-      first_name: true,
-      last_name: true,
-      birth_date: true,
-      address_id: true,
-      store_id: true
-    }
+    select: employeeBody
   })
 }
 
@@ -18,28 +20,14 @@ export const getEmployeeByIdQuery = async id => {
     where: {
       employee_id: id
     },
-    select: {
-      employee_id: true,
-      first_name: true,
-      last_name: true,
-      birth_date: true,
-      address_id: true,
-      store_id: true
-    }
+    select: employeeBody
   })
 }
 
 export const createEmployeeUseCase = async data => {
   return prisma.employee.create({
     data,
-    select: {
-      employee_id: true,
-      first_name: true,
-      last_name: true,
-      birth_date: true,
-      address_id: true,
-      store_id: true
-    }
+    select: employeeBody
   })
 }
 
@@ -49,14 +37,7 @@ export const updateEmployeeUseCase = async ({ data, id }) => {
       employee_id: id
     },
     data,
-    select: {
-      employee_id: true,
-      first_name: true,
-      last_name: true,
-      birth_date: true,
-      address_id: true,
-      store_id: true
-    }
+    select: employeeBody
   })
 }
 
@@ -65,13 +46,6 @@ export const deleteEmployeeByIdUseCase = async id => {
     where: {
       employee_id: id
     },
-    select: {
-      employee_id: true,
-      first_name: true,
-      last_name: true,
-      birth_date: true,
-      address_id: true,
-      store_id: true
-    }
+    select: employeeBody
   })
 }

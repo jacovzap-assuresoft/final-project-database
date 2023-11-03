@@ -1,13 +1,15 @@
 import prisma from '../config/db.config.js'
 
+const employeeContactBody = {
+  contact_id: true,
+  employee_id: true,
+  contact_type: true,
+  contact_value: true
+}
+
 export const getAllEmployeeContactsQuery = async () => {
   return prisma.employee_contact.findMany({
-    select: {
-      contact_id: true,
-      employee_id: true,
-      contact_type: true,
-      contact_value: true
-    }
+    select: employeeContactBody
   })
 }
 
@@ -16,24 +18,14 @@ export const getEmployeeContactByIdQuery = async id => {
     where: {
       contact_id: id
     },
-    select: {
-      contact_id: true,
-      employee_id: true,
-      contact_type: true,
-      contact_value: true
-    }
+    select: employeeContactBody
   })
 }
 
 export const createEmployeeContactUseCase = async data => {
   return prisma.employee_contact.create({
     data,
-    select: {
-      contact_id: true,
-      employee_id: true,
-      contact_type: true,
-      contact_value: true
-    }
+    select: employeeContactBody
   })
 }
 
@@ -43,12 +35,7 @@ export const updateEmployeeContactUseCase = async ({ data, id }) => {
       contact_id: id
     },
     data,
-    select: {
-      contact_id: true,
-      employee_id: true,
-      contact_type: true,
-      contact_value: true
-    }
+    select: employeeContactBody
   })
 }
 
@@ -57,11 +44,6 @@ export const deleteEmployeeContactByIdUseCase = async id => {
     where: {
       contact_id: id
     },
-    select: {
-      contact_id: true,
-      employee_id: true,
-      contact_type: true,
-      contact_value: true
-    }
+    select: employeeContactBody
   })
 }
