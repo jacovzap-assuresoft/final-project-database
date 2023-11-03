@@ -1,13 +1,15 @@
 import prisma from '../config/db.config.js'
 
+const ADDRESS_SELECT = {
+  address_id: true,
+  address_dir: true,
+  location: true,
+  number: true
+  }
+
 export const getAllAddressesRepository = async () => {
   return prisma.address.findMany({
-    select: {
-      address_id: true,
-      address_dir: true,
-      location: true,
-      number: true
-    }
+    select: ADDRESS_SELECT
   })
 }
 
@@ -17,24 +19,14 @@ export const getAddressRepository = async (addresId) => {
       address_id: addresId
     }
   }, {
-    select: {
-      address_id: true,
-      address_dir: true,
-      location: true,
-      number: true
-    }
+    select: ADDRESS_SELECT
   })
 }
 
 export const createAddressRepository = async (addressData) => {
   return prisma.address.create({
     data: addressData,
-    select: {
-      address_id: true,
-      address_dir: true,
-      location: true,
-      number: true
-    }
+    select: ADDRESS_SELECT
   })
 }
 
@@ -44,12 +36,7 @@ export const updateAddressRepository = async (addressId, addressData) => {
       address_id: addressId
     },
     data: addressData,
-    select: {
-      address_id: true,
-      address_dir: true,
-      location: true,
-      number: true
-    }
+    select: ADDRESS_SELECT
   })
 }
 
@@ -59,11 +46,6 @@ export const deleteAddressRepository = async (addresId) => {
       address_id: addresId
     }
   }, {
-    select: {
-      address_id: true,
-      address_dir: true,
-      location: true,
-      number: true
-    }
+    select: ADDRESS_SELECT
   })
 }
