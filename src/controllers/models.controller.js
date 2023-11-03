@@ -4,7 +4,7 @@ import {
   createModelRepository,
   updateModelRepository,
   deleteModelRepository
-} from '../repositories/model.repository.js'
+} from '../repositories/models.repository.js'
 
 export const getAllModels = async (req, res) => {
   try {
