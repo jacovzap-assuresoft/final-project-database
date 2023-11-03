@@ -1,8 +1,8 @@
 import {
   createJuridicalCustomerRepository,
   deleteJuridicalCustomerRepository,
-  getAllJuridicalCustomers,
-  getJuridicalCustomer,
+  getAllJuridicalCustomersRepository,
+  getJuridicalCustomerRepository,
   updateJuridicalCustomerRepository
 } from '../repositories/juridicalCustomer.repository.js'
 
@@ -12,9 +12,9 @@ export const getJuridicalCustomers = async (req, res) => {
 
     let customers
     if (juridicalCustomerId !== undefined) {
-      customers = await getJuridicalCustomer(Number(juridicalCustomerId))
+      customers = await getJuridicalCustomerRepository(Number(juridicalCustomerId))
     } else {
-      customers = await getAllJuridicalCustomers()
+      customers = await getAllJuridicalCustomersRepository()
     }
 
     res.status(200).json(customers)

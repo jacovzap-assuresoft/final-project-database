@@ -8,13 +8,13 @@ const JURIDICAL_CUSTOMER_INCLUDE = {
   }
 }
 
-export const getAllJuridicalCustomers = async () => {
+export const getAllJuridicalCustomersRepository = async () => {
   return prisma.juridical.findMany({
     include: JURIDICAL_CUSTOMER_INCLUDE
   })
 }
 
-export const getJuridicalCustomer = async (juridicalCustomerId) => {
+export const getJuridicalCustomerRepository = async (juridicalCustomerId) => {
   return await prisma.juridical.findUnique({
     where: { juridical_id: juridicalCustomerId },
     include: JURIDICAL_CUSTOMER_INCLUDE
