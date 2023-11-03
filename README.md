@@ -1,13 +1,18 @@
 ### DATABASE FUNDAMENTALS FINAL PROJECT
 
-# INIT DATABASE FROM ZERO
-In order to generate the tables in an empty database run the following commnand:
+# APPLYING MIGRATIONS
+In order to apply new migrations run this command:
 ```
-npx prisma generate dev
+npx prisma migrate dev
 ```
 
+# UPDATING SCHEMA
+This command updates the prisma schema with changes made to the database
+```
+npx prisma db pull
+```
 # CREATE NEW MIGRATIONS
-When changes are made in the prisma schema, the changes can be applied by creating a new migration, this can be done with the next command line: 
+When changes are made in the prisma schema, the changes can be applied by creating a new migration, this can be done with the next command:
 ```
 npx prisma migrate dev --name <name of the migration>
 ```
