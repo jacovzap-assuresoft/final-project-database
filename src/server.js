@@ -17,5 +17,7 @@ app.use(express.json())
 app.use('/address', addressRouter)
 app.use('/store', storeRouter)
 app.use('/stock', stockRouter)
+app.use('/sale', saleRouter)
+app.use('/payment', paymentRouter)
 
 export default app
