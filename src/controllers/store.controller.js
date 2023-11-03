@@ -42,7 +42,6 @@ export const updateStore = async (req, res) => {
   try {
     const { id } = req.params
     const data = req.body
-    console.log(data)
     const store = await updateStoreRepository(Number(id), data)
     res.status(200).json(store)
   } catch (err) {
