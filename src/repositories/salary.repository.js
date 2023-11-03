@@ -10,13 +10,13 @@ const salaryBody = {
   amount: true
 }
 
-export const getAllSalariesQuery = async () => {
+export const getAllSalariesRepository = async () => {
   return prisma.salary.findMany({
     select: salaryBody
   })
 }
 
-export const getSalaryByIdQuery = async id => {
+export const getSingleSalaryRepository = async id => {
   return prisma.salary.findUnique({
     where: {
       salary_id: id
@@ -25,14 +25,14 @@ export const getSalaryByIdQuery = async id => {
   })
 }
 
-export const createSalaryUseCase = async data => {
+export const createSalaryRepository = async data => {
   return prisma.salary.create({
     data,
     select: salaryBody
   })
 }
 
-export const updateSalaryUseCase = async ({ data, id }) => {
+export const updateSalaryRepository = async ({ data, id }) => {
   return prisma.salary.update({
     where: {
       salary_id: id
@@ -42,7 +42,7 @@ export const updateSalaryUseCase = async ({ data, id }) => {
   })
 }
 
-export const deleteSalaryByIdUseCase = async id => {
+export const deleteSalaryRepository = async id => {
   return prisma.salary.delete({
     where: {
       salary_id: id
